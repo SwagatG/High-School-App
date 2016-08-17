@@ -1,0 +1,5 @@
+API KEY:
+55668083e86877e3c9e32c27748f69f6
+
+CITY DATA:
+{"_id":6094817,"name":"Ottawa","country":"CA","coord":{"lon":-75.69812,"lat":45.411171}}
