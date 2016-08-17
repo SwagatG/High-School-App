@@ -3,3 +3,6 @@ API KEY:
 
 CITY DATA:
 {"_id":6094817,"name":"Ottawa","country":"CA","coord":{"lon":-75.69812,"lat":45.411171}}
+
+WEATHER CONDITION KEY:
+http://openweathermap.org/weather-conditions

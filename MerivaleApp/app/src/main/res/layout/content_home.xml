@@ -10,10 +10,91 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.ghimire.swagat.merivaleapp.MainActivity"
-    tools:showIn="@layout/app_bar_main">
+    tools:showIn="@layout/app_bar_main"
+    android:background="#FF0099CC">
 
+    <ImageView
+        android:id="@+id/dayImg"
+        android:layout_width="125dp"
+        android:layout_height="125dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/day_1"/>
     <TextView
+        style="@style/timeFont"
+        android:id="@+id/date"
+        android:layout_toEndOf="@id/dayImg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:text="Tue, "/>
+    <TextView
+        style="@style/timeFont"
+        android:id="@+id/time"
+        android:layout_below="@id/date"
+        android:layout_toEndOf="@id/dayImg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="40dp"
+        android:text="Aug "/>
+
+
+    <ImageView
+        android:id="@+id/weatherImg"
+        android:layout_width="125dp"
+        android:layout_height="125dp"
+        android:layout_below="@+id/dayImg"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:src="@drawable/day_1"/>
+    <TextView
+        style="@style/timeFont"
+        android:id="@+id/weatherType"
+        android:layout_marginTop="8dp"
+        android:layout_toEndOf="@id/dayImg"
+        android:layout_below="@id/dayImg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:text="Tue, "/>
+    <TextView
+        style="@style/timeFont"
+        android:id="@+id/temperature"
+        android:layout_below="@id/weatherType"
+        android:layout_toEndOf="@id/dayImg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="40dp"
+        android:text="Aug "/>
+    <!--<TextView
+        style="@style/timeFont"
+        android:id="@+id/date"
+        android:layout_toEndOf="@id/month"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="16"/>
+    <TextView
+        style="@style/timeFont"
+        android:id="@+id/hour"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:layout_toEndOf="@id/dayImg"
+        android:layout_below="@+id/dayOfWeek"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="11:"/>
+    <TextView
+        style="@style/timeFont"
+        android:id="@+id/minute"
+        android:layout_toEndOf="@id/hour"
+        android:layout_below="@+id/dayOfWeek"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="34 "/>
+    <TextView
+        style="@style/timeFont"
+        android:id="@+id/ampm"
+        android:layout_toEndOf="@id/minute"
+        android:layout_below="@+id/dayOfWeek"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PM"/> -->
+
 </RelativeLayout>
