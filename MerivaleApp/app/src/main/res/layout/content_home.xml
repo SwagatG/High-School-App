@@ -18,24 +18,27 @@
         android:layout_width="125dp"
         android:layout_height="125dp"
         android:layout_marginTop="8dp"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:src="@drawable/day_1"/>
     <TextView
         style="@style/timeFont"
         android:id="@+id/date"
-        android:layout_toEndOf="@id/dayImg"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@id/dayImg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:text="Tue, "/>
+        android:paddingTop="12dp"
+        android:paddingRight="8dp"
+        android:text="ERROR" />
     <TextView
         style="@style/timeFont"
         android:id="@+id/time"
         android:layout_below="@id/date"
-        android:layout_toEndOf="@id/dayImg"
+        android:layout_alignParentRight="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingLeft="40dp"
-        android:text="Aug "/>
+        android:paddingRight="8dp"
+        android:text="ERROR" />
 
 
     <ImageView
@@ -44,26 +47,41 @@
         android:layout_height="125dp"
         android:layout_below="@+id/dayImg"
         android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:src="@drawable/day_1"/>
     <TextView
         style="@style/timeFont"
         android:id="@+id/weatherType"
-        android:layout_marginTop="8dp"
-        android:layout_toEndOf="@id/dayImg"
+        android:layout_alignTop="@id/weatherImg"
+        android:layout_alignParentRight="true"
         android:layout_below="@id/dayImg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:text="Tue, "/>
+        android:paddingTop="12dp"
+        android:paddingRight="8dp"
+        android:text="ERROR" />
     <TextView
         style="@style/timeFont"
         android:id="@+id/temperature"
         android:layout_below="@id/weatherType"
-        android:layout_toEndOf="@id/dayImg"
+        android:layout_alignParentRight="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingLeft="40dp"
-        android:text="Aug "/>
+        android:paddingRight="8dp"
+        android:text="ERROR" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:id="@+id/relativeLayout">
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:layout_centerHorizontal="true"
+            android:visibility="visible" />
+    </RelativeLayout>
     <!--<TextView
         style="@style/timeFont"
         android:id="@+id/date"
