@@ -23,6 +23,7 @@ public class FetchWeather extends AppCompatActivity {
     ProgressBar progressBar;
     TextView w1, w2;
     ImageView w3;
+    float scale;
     //static final String API_KEY = "USE_YOUR_OWN_API_KEY";
     static final String API_URL = "http://api.openweathermap.org/data/2.5/weather?id=6094817&units=metric&APPID=55668083e86877e3c9e32c27748f69f6";
 
@@ -31,11 +32,12 @@ public class FetchWeather extends AppCompatActivity {
         super.onCreate(savedInstanceState);
     }
 
-    protected void Initialize(TextView ww1, TextView ww2, ImageView ww3, ProgressBar p1){
+    protected void Initialize(TextView ww1, TextView ww2, ImageView ww3, ProgressBar p1, float s1){
         w1 = ww1;
         w2 = ww2;
         w3 = ww3;
         progressBar = p1;
+        scale = s1;
         new RetrieveFeedTask().execute();
     }
 
@@ -87,10 +89,24 @@ public class FetchWeather extends AppCompatActivity {
                 icon = details.getString("icon");
                 id = details.getInt("id");
                 temp = main.getDouble("temp");
-                tempStr = String.valueOf(temp);
+                tempStr = String.format("%.0f", temp);
+//                tempStr = String.valueOf(temp);
+                if (description.length() > 13){
+                    w1.setTextSize(24);
+                    if (description.length() < 21){
+                        int padding_in_dp = 20;  // 16 dps
+                        int padding_in_px = (int) (padding_in_dp * scale + 0.5f);
+                        w1.setPadding(0,padding_in_px,0,0);
+                    }
+                }
                 w1.setText(description);
+                w1.setMaxLines(2);
                 w2.setText(tempStr + "°C");
-                w3.setImageResource(R.drawable.completed_icon);
+                w3.setImageResource(R.drawable.completed_icon2);
+//                tempStr = String.valueOf(temp);
+//                w1.setText(description);
+//                w2.setText(tempStr + "°C");
+//                w3.setImageResource(R.drawable.completed_icon2);
             }catch (Exception e){
                 Log.d("ERROR: ", e.toString());
             }
