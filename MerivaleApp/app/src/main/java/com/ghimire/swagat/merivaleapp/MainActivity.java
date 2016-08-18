@@ -4,6 +4,7 @@ import android.media.Image;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -15,6 +16,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -39,6 +43,10 @@ public class MainActivity extends AppCompatActivity
         } else{
             dateImg.setImageResource(R.drawable.day_2);
         }
+
+        //syncWeather.fetchData();
+        //syncWeather.UpdateWeather(w1, w2, w3);
+        //Log.d("AAY: ", "LMAO2");
     }
 
     @Override
