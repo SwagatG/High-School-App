@@ -15,6 +15,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import org.json.JSONObject;
@@ -43,7 +44,12 @@ public class MainActivity extends AppCompatActivity
         } else{
             dateImg.setImageResource(R.drawable.day_2);
         }
-
+        TextView w1 = (TextView) findViewById(R.id.weatherType);
+        TextView w2 = (TextView) findViewById(R.id.temperature);
+        ImageView w3 = (ImageView) findViewById(R.id.weatherImg);
+        ProgressBar p1 = (ProgressBar) findViewById(R.id.progressBar);
+        FetchWeather getWeather = new FetchWeather();
+        getWeather.Initialize(w1, w2, w3, p1);
         //syncWeather.fetchData();
         //syncWeather.UpdateWeather(w1, w2, w3);
         //Log.d("AAY: ", "LMAO2");
