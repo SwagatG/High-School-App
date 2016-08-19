@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "839553971499",
+    "project_id": "merivaleagenda"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:839553971499:android:35f7ce18d7ca99da",
+        "android_client_info": {
+          "package_name": "com.ghimire.swagat.merivaleapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "839553971499-tt9989u5qar0l5o95i1k5nnuvaebkho2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ghimire.swagat.merivaleapp",
+            "certificate_hash": "861B8654085362FF7A77E85D67550A7181A67241"
+          }
+        },
+        {
+          "client_id": "839553971499-tsslegdi95f990dqtpkl4cs96lf3it1h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFTr6vExELccLBwM2z4STVU7VTdokYQh0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
