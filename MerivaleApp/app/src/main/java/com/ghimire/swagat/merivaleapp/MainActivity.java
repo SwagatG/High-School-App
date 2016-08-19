@@ -1,10 +1,12 @@
 package com.ghimire.swagat.merivaleapp;
 
+import android.graphics.Typeface;
 import android.media.Image;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.util.Log;
+import android.view.TextureView;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -37,7 +39,10 @@ public class MainActivity extends AppCompatActivity
         dateView.setText(formattedDate);
         TextView timeView = (TextView) findViewById(R.id.time);
         timeView.setText(formattedTime);
-        int daySched = c.DAY_OF_MONTH;
+        String DayofMonth = new StringBuilder().append(formattedDate.charAt(formattedDate.length()-2)).append(formattedDate.charAt(formattedDate.length()-1)).toString();
+        //int daySched = c.HOUR_OF_DAY;
+        int daySched = Integer.parseInt(DayofMonth);
+        //Log.d("DAYSCHED:", Integer.toString(daySched));
         ImageView dateImg = (ImageView) findViewById(R.id.dayImg);
         if (daySched % 2 == 1){
             dateImg.setImageResource(R.drawable.day_1);
@@ -46,10 +51,13 @@ public class MainActivity extends AppCompatActivity
         }
         TextView w1 = (TextView) findViewById(R.id.weatherType);
         TextView w2 = (TextView) findViewById(R.id.temperature);
-        ImageView w3 = (ImageView) findViewById(R.id.weatherImg);
+        TextView w3 = (TextView) findViewById(R.id.weatherImg);
         ProgressBar p1 = (ProgressBar) findViewById(R.id.progressBar);
+        float s1 = getResources().getDisplayMetrics().density;
+        Typeface f1 = Typeface.createFromAsset(getAssets(), "fonts/weather.ttf");
+        Log.d("FONTSET: ", f1.toString());
         FetchWeather getWeather = new FetchWeather();
-        getWeather.Initialize(w1, w2, w3, p1);
+        getWeather.Initialize(w1, w2, w3, p1, s1, f1, this);
         //syncWeather.fetchData();
         //syncWeather.UpdateWeather(w1, w2, w3);
         //Log.d("AAY: ", "LMAO2");
