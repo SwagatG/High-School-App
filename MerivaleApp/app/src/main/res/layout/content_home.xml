@@ -48,7 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/dayImg"
         android:layout_marginTop="0dp"
-        android:layout_marginLeft="40dp"/>
+        android:layout_marginLeft="20dp"/>
         //android:src="@drawable/day_1"/>
     <TextView
         style="@style/timeFont"

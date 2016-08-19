@@ -9,4 +9,6 @@
 
     <dimen name="weather_small">24dp</dimen>
     <dimen name="weather_big">36dp</dimen>
+
+    <dimen name="g_top_margin">100dp</dimen>
 </resources>

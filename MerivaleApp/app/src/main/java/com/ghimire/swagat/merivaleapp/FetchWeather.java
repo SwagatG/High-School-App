@@ -298,7 +298,7 @@ public class FetchWeather extends AppCompatActivity {
                 temp = main.getDouble("temp");
                 tempStr = String.format("%.0f", temp);
                 w3.setTypeface(font);
-                Log.d("TYPEFACE: ", font.toString());
+                //Log.d("TYPEFACE: ", font.toString());
 //                w3.setText("&#xf02e");
                 getImage(id, icon.charAt(2));
 //                tempStr = String.valueOf(temp);
