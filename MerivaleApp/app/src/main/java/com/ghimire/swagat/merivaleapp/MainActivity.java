@@ -1,5 +1,6 @@
 package com.ghimire.swagat.merivaleapp;
 
+import android.graphics.Typeface;
 import android.media.Image;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -50,11 +51,13 @@ public class MainActivity extends AppCompatActivity
         }
         TextView w1 = (TextView) findViewById(R.id.weatherType);
         TextView w2 = (TextView) findViewById(R.id.temperature);
-        ImageView w3 = (ImageView) findViewById(R.id.weatherImg);
+        TextView w3 = (TextView) findViewById(R.id.weatherImg);
         ProgressBar p1 = (ProgressBar) findViewById(R.id.progressBar);
         float s1 = getResources().getDisplayMetrics().density;
+        Typeface f1 = Typeface.createFromAsset(getAssets(), "fonts/weather.ttf");
+        Log.d("FONTSET: ", f1.toString());
         FetchWeather getWeather = new FetchWeather();
-        getWeather.Initialize(w1, w2, w3, p1, s1);
+        getWeather.Initialize(w1, w2, w3, p1, s1, f1, this);
         //syncWeather.fetchData();
         //syncWeather.UpdateWeather(w1, w2, w3);
         //Log.d("AAY: ", "LMAO2");
