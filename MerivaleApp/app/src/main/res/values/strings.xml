@@ -8,9 +8,10 @@
     <string name="open_weather_maps_app_id">55668083e86877e3c9e32c27748f69f6</string>
 
     <!-- GOOGLE SIGNIN -->
-    <string name="title_text">MHS App\nGoogle Sign-In</string>
+    <string name="title_text">MHS App</string>
 
     <!-- Sign-in status messages -->
+    <string name="not_signed_in">Not Signed In</string>
     <string name="signed_in_fmt">Signed in as: %s</string>
     <string name="signed_in">Signed in</string>
     <string name="signing_in">Signing in…</string>
@@ -34,7 +35,7 @@
     <string name="refresh_token">Get Fresh Token</string>
 
     <!-- Content Description for images -->
-    <string name="desc_google_icon">Google Logo</string>
+    <string name="desc_google_icon">MHS App Logo</string>
 
     <!-- Rationale for asking for Contacts -->
     <string name="contacts_permission_rationale">Contacts access is needed in order to retrieve your email address.</string>

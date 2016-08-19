@@ -4,6 +4,10 @@
     <color name="colorPrimaryDark">#C62828</color>
     <color name="colorAccent">#FFD740</color>
 
+    <color name="loginDark">#B71C1C</color>
+    <color name="loginLight">#FDD835</color>
+    <color name="loginText">#FFEB3B</color>
+
     <color name="blue_grey_500">#607D8B</color>
     <color name="blue_grey_600">#546E7A</color>
     <color name="blue_grey_700">#455A64</color>
