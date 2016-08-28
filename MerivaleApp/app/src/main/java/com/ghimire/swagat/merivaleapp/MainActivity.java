@@ -2,19 +2,12 @@ package com.ghimire.swagat.merivaleapp;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
-import android.media.Image;
-import android.net.Uri;
 import android.os.Bundle;
-import android.preference.PreferenceActivity;
-import android.provider.MediaStore;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.TextureView;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -41,12 +34,6 @@ import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Scope;
 import com.google.android.gms.common.api.Status;
 
-import org.json.JSONObject;
-import org.w3c.dom.Text;
-
-import java.io.InputStream;
-import java.net.URI;
-import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -55,7 +42,11 @@ public class MainActivity extends AppCompatActivity
         GoogleApiClient.OnConnectionFailedListener,
         View.OnClickListener {
 
-    private static final String TAG = "SignInActivity";
+    public String currFrag = null;
+    public Fragment fragment;
+    public FragmentTransaction fragmentTransaction;
+
+    private static final String TAG = "SignIn";
     private static final int RC_SIGN_IN = 9001;
 
     private GoogleApiClient mGoogleApiClient;
@@ -63,40 +54,6 @@ public class MainActivity extends AppCompatActivity
     private ProgressDialog mProgressDialog;
 
     private GoogleSignInAccount acct;
-
-    private void getDateTime(){
-        Calendar c = Calendar.getInstance();
-        SimpleDateFormat df = new SimpleDateFormat("E, MMM dd");
-        String formattedDate = df.format(c.getTime());
-        SimpleDateFormat tf = new SimpleDateFormat("hh:mm aa");
-        String formattedTime = tf.format(c.getTime());
-        TextView dateView = (TextView) findViewById(R.id.date);
-        dateView.setText(formattedDate);
-        TextView timeView = (TextView) findViewById(R.id.time);
-        timeView.setText(formattedTime);
-        String DayofMonth = new StringBuilder().append(formattedDate.charAt(formattedDate.length()-2)).append(formattedDate.charAt(formattedDate.length()-1)).toString();
-        //int daySched = c.HOUR_OF_DAY;
-        int daySched = Integer.parseInt(DayofMonth);
-        //Log.d("DAYSCHED:", Integer.toString(daySched));
-        ImageView dateImg = (ImageView) findViewById(R.id.dayImg);
-        if (daySched % 2 == 1){
-            dateImg.setImageResource(R.drawable.day_1);
-        } else{
-            dateImg.setImageResource(R.drawable.day_2);
-        }
-        TextView w1 = (TextView) findViewById(R.id.weatherType);
-        TextView w2 = (TextView) findViewById(R.id.temperature);
-        TextView w3 = (TextView) findViewById(R.id.weatherImg);
-        ProgressBar p1 = (ProgressBar) findViewById(R.id.progressBar);
-        float s1 = getResources().getDisplayMetrics().density;
-        Typeface f1 = Typeface.createFromAsset(getAssets(), "fonts/weather.ttf");
-        //Log.d("FONTSET: ", f1.toString());
-        FetchWeather getWeather = new FetchWeather();
-        getWeather.Initialize(w1, w2, w3, p1, s1, f1, this);
-        //syncWeather.fetchData();
-        //syncWeather.UpdateWeather(w1, w2, w3);
-        //Log.d("AAY: ", "LMAO2");
-    }
 
     public void getGoogleInfo() {
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -317,25 +274,20 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void setupHome(){
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        /*Log.d("NAME:", acct.getDisplayName());
-        Log.d("EMAIL:", acct.getEmail());
-        String nm = acct.getDisplayName();
-        String em = acct.getEmail();
-        Log.d("nm:", userName.toString());
-        Log.d("em:", userEmail.toString());*/
-        getDateTime();
+        if (currFrag == null){
+            fragment = new HomeFragment();
+            fragmentTransaction = getSupportFragmentManager().beginTransaction().add(R.id.container, fragment);
+            fragmentTransaction.commit();
+            currFrag = "home";
+            setTitle("HOME");
+            Log.d("FRAGS:", Integer.toString(getSupportFragmentManager().getBackStackEntryCount()));
+            getSupportFragmentManager().popBackStack();
+        }
 
-        /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
+        //getDateTime();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -344,22 +296,11 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        //View header = LayoutInflater.from(this).inflate(R.layout.nav_header_main, null);
-        //TextView testing = (TextView) navigationView.findViewById(R.id.userEmail);
-        //testing.setText("HOLA");
-        //Log.d("navStuff:", header.findViewById(R.id.userPic).toString());
-        //navigationView.addHeaderView(header);
-        //TextView userName = (TextView) header.findViewById(R.id.weatherType);
-        //TextView userEmail = (TextView) header.findViewById(R.id.userName);
-        //userEmail.setText(acct.getEmail().toString());
-        //userName.setText(acct.getDisplayName().toString());
-
         navigationView.setNavigationItemSelectedListener(this);
     }
 
     @Override
     public void onBackPressed() {
-        Log.d("onBackPressed", "AAY");
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
@@ -370,8 +311,6 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        Log.d("onCreateOptionsMenu", "AAY");
-
         getMenuInflater().inflate(R.menu.main, menu);
         getGoogleInfo();
 
@@ -405,19 +344,68 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-            Log.d("Nav", "home");
-        } else if (id == R.id.nav_news) {
+            Log.d("Nav", "fragment_home");
+            if (currFrag != "home"){
+                fragment = new HomeFragment();
+                fragmentTransaction = getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment);
+                fragmentTransaction.commit();
+                currFrag = "home";
+                setTitle("HOME");
+            }
+        } else if (id == R.id.nav_announce) {
             Log.d("Nav", "news");
+            if (currFrag != "announce"){
+                fragment = new AnnounceFragment();
+                fragmentTransaction = getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment);
+                fragmentTransaction.commit();
+                currFrag = "announce";
+                setTitle("DAILY ANNOUNCEMENTS");
+            }
         } else if (id == R.id.nav_calendar) {
             Log.d("Nav", "cal");
+            if (currFrag != "calendar"){
+                fragment = new CalendarFragment();
+                fragmentTransaction = getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment);
+                fragmentTransaction.commit();
+                currFrag = "calendar";
+                setTitle("CALENDAR");
+            }
         } else if (id == R.id.nav_classes) {
             Log.d("Nav", "class");
+            if (currFrag != "classes"){
+                fragment = new ClassesFragment();
+                fragmentTransaction = getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment);
+                fragmentTransaction.commit();
+                currFrag = "classes";
+                setTitle("CLASSES");
+            }
         } else if (id == R.id.nav_marks) {
             Log.d("Nav", "mark");
+            if (currFrag != "marks"){
+                fragment = new MarksFragment();
+                fragmentTransaction = getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment);
+                fragmentTransaction.commit();
+                currFrag = "marks";
+                setTitle("MARKS");
+            }
         } else if (id == R.id.nav_homework) {
             Log.d("Nav", "hw");
+            if (currFrag != "homework"){
+                fragment = new HomeworkFragment();
+                fragmentTransaction = getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment);
+                fragmentTransaction.commit();
+                currFrag = "homework";
+                setTitle("HOMEWORK");
+            }
         } else if (id == R.id.nav_info) {
             Log.d("Nav", "hw");
+            if (currFrag != "about"){
+                fragment = new AboutFragment();
+                fragmentTransaction = getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment);
+                fragmentTransaction.commit();
+                currFrag = "about";
+                setTitle("ABOUT");
+            }
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
