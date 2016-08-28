@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
@@ -43,6 +44,7 @@ import com.google.android.gms.common.api.Status;
 import org.json.JSONObject;
 import org.w3c.dom.Text;
 
+import java.io.InputStream;
 import java.net.URI;
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -94,6 +96,43 @@ public class MainActivity extends AppCompatActivity
         //syncWeather.fetchData();
         //syncWeather.UpdateWeather(w1, w2, w3);
         //Log.d("AAY: ", "LMAO2");
+    }
+
+    public void getGoogleInfo() {
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        Log.d("NAV", navigationView.toString());
+        TextView uN = (TextView) navigationView.findViewById(R.id.userName);
+        TextView uE = (TextView) navigationView.findViewById(R.id.userEmail);
+        ImageView uP = (ImageView) navigationView.findViewById(R.id.userPic);
+        if (uN != null){
+            uN.setText(acct.getDisplayName());
+            uE.setText(acct.getEmail());
+        } else {
+            Log.d("NAV", "fail");
+        }
+
+        //uP.setImageURI(acct.getPhotoUrl());
+        if (acct.getPhotoUrl() != null) {
+            FetchProfilePic getPic = new FetchProfilePic();
+            getPic.Initialize(acct.getPhotoUrl().toString(), uP, this);
+            //Drawable profPic = LoadImageFromWeb(acct.getPhotoUrl().toString());
+            //uP.setImageDrawable(profPic);
+            //Log.d("URI:", profPic.toString());
+        } else{
+            if (uN != null){
+                uP.setImageResource(R.drawable.ic_profilepic);
+            }
+        }
+
+        /*try {
+            InputStream is = (InputStream) new URL(url).getContent();
+            Log.d("inFunc:", is.toString());
+            Drawable d = Drawable.createFromStream(is, "src name");
+            return d;
+        } catch (Exception e) {
+            Log.d("inFunc:", e.toString());
+            return null;
+        }*/
     }
 
     @Override
@@ -306,6 +345,9 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         //View header = LayoutInflater.from(this).inflate(R.layout.nav_header_main, null);
+        //TextView testing = (TextView) navigationView.findViewById(R.id.userEmail);
+        //testing.setText("HOLA");
+        //Log.d("navStuff:", header.findViewById(R.id.userPic).toString());
         //navigationView.addHeaderView(header);
         //TextView userName = (TextView) header.findViewById(R.id.weatherType);
         //TextView userEmail = (TextView) header.findViewById(R.id.userName);
@@ -329,18 +371,10 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         Log.d("onCreateOptionsMenu", "AAY");
-        // Inflate the menu; this adds items to the action bar if it is present.
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        //View header = LayoutInflater.from(this).inflate(R.layout.nav_header_main, null);
-        TextView uN = (TextView) navigationView.findViewById(R.id.userName);
-        TextView uE = (TextView) navigationView.findViewById(R.id.userEmail);
-        ImageView uP = (ImageView) navigationView.findViewById(R.id.userPic);
-        uN.setText(acct.getDisplayName());
-        uE.setText(acct.getEmail());
 
-        //userName.setText(acct.getDisplayName());
-        //userEmail.setText(acct.getEmail());
         getMenuInflater().inflate(R.menu.main, menu);
+        getGoogleInfo();
+
         return true;
     }
 
@@ -354,6 +388,9 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            setContentView(R.layout.signin_main);
+            signOut();
+            findViewById(R.id.sign_in_button).setOnClickListener(this);
             return true;
         }
 
@@ -368,15 +405,19 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-            // Handle the camera action
+            Log.d("Nav", "home");
         } else if (id == R.id.nav_news) {
-
+            Log.d("Nav", "news");
         } else if (id == R.id.nav_calendar) {
-
+            Log.d("Nav", "cal");
+        } else if (id == R.id.nav_classes) {
+            Log.d("Nav", "class");
         } else if (id == R.id.nav_marks) {
-
+            Log.d("Nav", "mark");
         } else if (id == R.id.nav_homework) {
-
+            Log.d("Nav", "hw");
+        } else if (id == R.id.nav_info) {
+            Log.d("Nav", "hw");
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
