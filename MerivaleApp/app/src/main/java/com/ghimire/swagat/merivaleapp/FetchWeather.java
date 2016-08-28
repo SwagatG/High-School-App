@@ -302,9 +302,9 @@ public class FetchWeather extends AppCompatActivity {
 //                w3.setText("&#xf02e");
                 getImage(id, icon.charAt(2));
 //                tempStr = String.valueOf(temp);
-                if (description.length() > 13){
-                    w1.setTextSize(36);
-                    if (description.length() < 21){
+                if (description.length() > 12){
+                    w1.setTextSize(28);
+                    if (description.length() < 17){
                         int padding_in_dp = 20;  // 16 dps
                         int padding_in_px = (int) (padding_in_dp * scale + 0.5f);
                         w1.setPadding(0,padding_in_px,0,0);

@@ -44,16 +44,15 @@
     <TextView
         style="@style/weatherFont"
         android:id="@+id/weatherImg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="125dp"
+        android:layout_height="125dp"
         android:layout_below="@+id/dayImg"
-        android:layout_marginTop="0dp"
-        android:layout_marginLeft="20dp"/>
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"/>
         //android:src="@drawable/day_1"/>
     <TextView
         style="@style/timeFont"
         android:id="@+id/weatherType"
-        android:layout_alignTop="@id/weatherImg"
         android:layout_toEndOf="@id/weatherImg"
         android:layout_alignParentRight="true"
         android:layout_below="@id/dayImg"
@@ -61,7 +60,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="right"
         android:gravity="right"
-        android:paddingTop="24dp"
         android:paddingRight="8dp"
         android:text="ERROR" />
     <TextView

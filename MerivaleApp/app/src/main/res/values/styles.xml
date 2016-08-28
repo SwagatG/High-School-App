@@ -14,9 +14,10 @@
     </style>
 
     <style name="weatherFont">
-        <item name="android:textSize">112dp</item>
+        <item name="android:textSize">80dp</item>
         <item name="android:textColor">#FFFFFF</item>
         <item name="android:paddingTop">0dp</item>
+        <item name="android:gravity">center</item>
     </style>
 
     <style name="timeFont">
@@ -24,7 +25,12 @@
         <item name="android:textSize">36dp</item>
         <item name="android:textColor">#FFFFFF</item>
         <item name="android:paddingTop">8dp</item>
-</style>
+    </style>
+
+   <!-- <style name="cardStyle">
+        <item name="card_view:cardBackgroundColor">#FFFFFF</item>
+        <item name="card_view:cardCornerRadius">20dp</item>;
+    </style> -->
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
