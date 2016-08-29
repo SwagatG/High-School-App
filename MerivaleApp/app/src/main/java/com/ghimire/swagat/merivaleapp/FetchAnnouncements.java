@@ -5,6 +5,7 @@ import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -33,14 +34,16 @@ public class FetchAnnouncements extends AppCompatActivity {
     static final String SPREADSHEET_URL = "https://spreadsheets.google.com/feeds/cells/1QmjIm249kJjBoZD7D3fugk5EHVzz5cWBXh_EP-XLx8w/oi77ko2/public/full";
     Vector<String> announcements = new Vector<>(3,3);
     ProgressBar PBar;
+    RecyclerView RView;
     RetrieveFeedTask RTF = new RetrieveFeedTask();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
 
-    protected void Initialize(ProgressBar p1){
+    protected void Initialize(ProgressBar p1, RecyclerView rv){
         PBar = p1;
+        RView = rv;
         RTF.execute();
     }
 
@@ -60,6 +63,7 @@ public class FetchAnnouncements extends AppCompatActivity {
 
         protected void onPreExecute() {
             PBar.setVisibility(View.VISIBLE);
+            RView.setVisibility(View.GONE);
         }
 
         protected String doInBackground(Void... urls) {
@@ -88,6 +92,7 @@ public class FetchAnnouncements extends AppCompatActivity {
 
         protected void onPostExecute(String response) {
             PBar.setVisibility(View.GONE);
+            RView.setVisibility(View.VISIBLE);
             for (int i = 0; i < announcements.size(); i++){
             }
         }
