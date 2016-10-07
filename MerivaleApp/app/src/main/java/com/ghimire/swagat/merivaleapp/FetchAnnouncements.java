@@ -32,7 +32,8 @@ import javax.xml.parsers.DocumentBuilderFactory;
 
 public class FetchAnnouncements extends AppCompatActivity {
     static final String SPREADSHEET_URL = "https://spreadsheets.google.com/feeds/cells/1QmjIm249kJjBoZD7D3fugk5EHVzz5cWBXh_EP-XLx8w/oi77ko2/public/full";
-    Vector<String> announcements = new Vector<>(3,3);
+    Vector<String> announcements = new Vector<>(3,1);
+    Vector<String> cellList = new Vector<>(1,1);
     ProgressBar PBar;
     RecyclerView RView;
     RetrieveFeedTask RTF = new RetrieveFeedTask();
@@ -74,10 +75,27 @@ public class FetchAnnouncements extends AppCompatActivity {
                 DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
                 DocumentBuilder builder = factory.newDocumentBuilder();
                 Document doc = builder.parse(conn.getInputStream());
+                char currType = 'B', pastType = 'C';
 
-                NodeList nodes = doc.getElementsByTagName("entry");
-                for (int i = 0; i < nodes.getLength(); i++) {
-                    Element element = (Element) nodes.item(i);
+                NodeList entries = doc.getElementsByTagName("entry");
+                NodeList cells = doc.getElementsByTagName("title");
+                for (int i = 0; i < entries.getLength(); i++) {
+                    Element element = (Element) entries.item(i);
+                    Element cell = (Element) cells.item(i+1);
+                    String currCell = cell.getTextContent();
+                    currType = currCell.charAt(0);
+                    if (currType == 'A'){
+                        switch (pastType){
+                            case 'B': announcements.add("Unknown");
+                                break;
+                            case 'A': announcements.add("No Text");
+                                announcements.add("Unknown");
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                    pastType = currType;
                     NodeList title = element.getElementsByTagName("content");
                     Element line = (Element) title.item(0);
                     announcements.add(line.getTextContent());

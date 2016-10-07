@@ -11,11 +11,11 @@
     </android.support.v7.widget.RecyclerView>
 
     <ProgressBar
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:id="@+id/progressBarAnn"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_vertical|center_horizontal"
         android:visibility="visible"/>
 </FrameLayout>
 

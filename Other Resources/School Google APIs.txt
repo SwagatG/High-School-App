@@ -1,5 +1,8 @@
 (Calendar ID: ocdsb.ca_p5nkm7k1q1r35mj6jfs0p7gprk@group.calendar.google.com)
 
+LINK for CAL JSON:
+https://www.googleapis.com/calendar/v3/calendars/ocdsb.ca_p5nkm7k1q1r35mj6jfs0p7gprk%40group.calendar.google.com/events?orderBy=startTime&singleEvents=true&timeMax=2016-10-30T10%3A00%3A00-01%3A00&timeMin=2016-08-29T10%3A00%3A00-01%3A00&key=AIzaSyDFTr6vExELccLBwM2z4STVU7VTdokYQh0
+
 
 SHEETS ID:
 1QmjIm249kJjBoZD7D3fugk5EHVzz5cWBXh_EP-XLx8w
